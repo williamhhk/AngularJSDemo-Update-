@@ -53,8 +53,6 @@
         function Delete() {
             gridVm.gridApi.selection.getSelectedRows().forEach(function (item) {
                 CRUDService.Delete(item.BusinessEntityID).then(function success(result) {
-                    //gridVm.gridOptions.data.splice(gridVm.gridOptions.data.indexOf(item), 1);
-                    //gridVm.gridApi.selection.clearSelectedRows();
                     Reload();
                     gridVm.message = "";
                 }, function error(result) {
@@ -67,14 +65,11 @@
         function Update() {
             var data = angular.copy(gridVm.EmployeeData);
             gridVm.gridApi.selection.getSelectedRows().forEach(function (item) {
-                //var index = gridVm.gridOptions.data.indexOf(item);
-                //var mergeData = Helper.Merge(data, result.data);
+                var mergeData = Helper.Merge(data, item.data);
                 CRUDService.Update(mergedData)
                     .then(function (result) {
-                        //gridVm.gridOptions.data[index] = mergedData;
                         Reload();
                         gridVm.message = "";
-
                 }, function error(result) {
                     console.log("Error >>" + result);
                     gridVm.message = result.data;
@@ -83,10 +78,9 @@
         }
 
         function Create() {
-            var data = angular.copy(gridVm.EmployeeData);
             CRUDService.Create(gridVm.EmployeeData).then(function (result) {
-                //gridVm.gridOptions.data.push(Helper.Merge(data, result.data));
                 Reload();
+                gridVm.message = "";
             }, function (error) {
                 console.log("Error >> " + error);
             });
