@@ -490,7 +490,6 @@ webpackJsonp([0],[
 	
 	        function Delete() {
 	            gridVm.gridApi.selection.getSelectedRows().forEach(function (item) {
-	                console.log(item);
 	                CRUDService.Delete(item.BusinessEntityID).then(function success(result) {
 	                    //gridVm.gridOptions.data.splice(gridVm.gridOptions.data.indexOf(item), 1);
 	                    //gridVm.gridApi.selection.clearSelectedRows();
