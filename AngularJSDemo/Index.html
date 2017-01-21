@@ -1,0 +1,17 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="dist/vendor.bundle.js"></script>
+    <script src="dist/app.bundle.js"></script>
+</head>
+<body ng-controller="rootController as root">
+        <div ui-grid="root.gridOptions" ui-grid-selection ui-grid-exporter class="grid"></div>
+        <button type="submit" ng-click="root.Reload()">Reload</button>
+        <button type="submit" ng-click="root.Delete()">Delete</button>   
+        <button type="submit" ng-click="root.Export()">Export</button>
+        <pre>data : {{  root.gridApi.selection.getSelectedRows()  | json}}</pre>
+</body>
+</html>
